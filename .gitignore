@@ -28,15 +28,3 @@ yarn-error.log*
 
 
 
-
-data/
-**/data/
-**/mysql/
-**/db/
-db.sqlite3
-.git
-.gitignore
-__pycache__/
-*.pyc
-.env
-
