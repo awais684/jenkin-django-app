@@ -13,21 +13,21 @@ pipeline {
         stage('build') {
             steps {
                 script{
-                build('jenkins-app', 'latest', 'awais684')
+                build('jenkins-app', 'v1', 'awais684')
                 }
             }
         }
         stage('push') {
             steps {
                 script{
-                push('jenkins-app', 'latest', 'awais684')
+                push('jenkins-app', 'v1', 'awais684')
                 }
             }
         }
         stage('deploy') {
             steps {
                 script{
-                deploy('jenkins-app', 'latest')
+                deploy('jenkins-app', 'v1')
                 }
             }
         }
