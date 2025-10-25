@@ -27,7 +27,7 @@ pipeline {
         stage('deploy') {
             steps {
                 script{
-                deploy('jenkins-app', 'v1')
+                deploy('awais684/jenkins-app', 'v1')
                 }
             }
         }
