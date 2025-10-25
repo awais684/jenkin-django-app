@@ -1,29 +1,35 @@
-@Library('Shared')_
-pipeline{
-    agent { label 'dev-server'}
-    
-    stages{
-        stage("Code clone"){
-            steps{
-                sh "whoami"
-            clone("https://github.com/awais684/jenkin-django-app.git","master")
+@Library('sharedlib') _
+pipeline {
+    agent { label "myvm" }
+
+    stages {
+        stage('code') {
+            steps {
+                script{
+                code('https://github.com/awais684/jenkin-django-app.git', 'master')
+                }
             }
         }
-        stage("Code Build"){
-            steps{
-            dockerbuild("notes-app","latest")
+        stage('build') {
+            steps {
+                script{
+                build('jenkins-app', 'latest', 'awais684')
+                }
             }
         }
-        stage("Push to DockerHub"){
-            steps{
-                dockerpush("dockerHubCreds","notes-app","latest")
+        stage('push') {
+            steps {
+                script{
+                push('jenkins-app', 'latest', 'awais684')
+                }
             }
         }
-        stage("Deploy"){
-            steps{
-                deploy()
+        stage('deploy') {
+            steps {
+                script{
+                deploy('jenkins-app', 'latest')
+                }
             }
         }
-        
     }
 }
